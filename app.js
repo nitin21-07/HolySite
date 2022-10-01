@@ -2,7 +2,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const formRoute = require('./routes/form')
+const bookSlotroute = require('./routes/bookSlot')
 
 
 const uri = "mongodb+srv://RestApi:Nitin123@cluster0.fmc3i.mongodb.net/?retryWrites=true&w=majority";
@@ -24,6 +26,15 @@ mongoose.connect(uri,(err)=>{
 })
 
 const app = express()
+app.use(cors());
+
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
@@ -35,7 +46,7 @@ app.listen(Port, () => {
 })
 
 app.use('/api/form', formRoute);
-
+app.use('/api/bookSlot', bookSlotroute);
 
 
 
