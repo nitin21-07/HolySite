@@ -4,7 +4,8 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const formRoute = require('./routes/form')
-const bookSlotroute = require('./routes/bookSlot')
+const bookSlotRoute = require('./routes/bookSlot')
+const enquiryFormRoute = require('./routes/enquiryForm')
 
 
 const uri = "mongodb+srv://RestApi:Nitin123@cluster0.fmc3i.mongodb.net/?retryWrites=true&w=majority";
@@ -46,7 +47,8 @@ app.listen(Port, () => {
 })
 
 app.use('/api/form', formRoute);
-app.use('/api/bookSlot', bookSlotroute);
+app.use('/api/bookSlot', bookSlotRoute);
+app.use('/api/enquiryForm', enquiryFormRoute);
 
 
 
